@@ -26,146 +26,146 @@ Window {
     // ---- traduction : tr("clé") suit tracker.language ----------------------
     readonly property var strings: ({
         "tagline":   ["tracker Hearthstone natif Linux", "native Linux Hearthstone tracker",
-                      "原生 Linux 炉石传说追踪器"],
-        "hsOn":      ["● Hearthstone détecté", "● HS running", "● 已检测到炉石传说"],
-        "hsOff":     ["○ en attente de HS", "○ HS not running", "○ 等待炉石启动"],
-        "hsForced":  ["● détection du jeu désactivée", "● game detection off", "● 已关闭游戏检测"],
-        "addons":    ["ADD-ONS DU BANDEAU", "COUNTER BAR ADD-ONS", "悬浮条组件"],
-        "windows":   ["FENÊTRES", "WINDOWS", "窗口"],
-        "sharing":   ["PARTAGE DE PARTIES", "GAME SHARING", "对局分享"],
+                      "原生 Linux 炉石传说追踪器", "Трекер Hearthstone для Linux"],
+        "hsOn":      ["● Hearthstone détecté", "● HS running", "● 已检测到炉石传说", "● HS запущен"],
+        "hsOff":     ["○ en attente de HS", "○ HS not running", "○ 等待炉石启动", "○ HS не запущен"],
+        "hsForced":  ["● détection du jeu désactivée", "● game detection off", "● 已关闭游戏检测", "● проверка игры отключена"],
+        "addons":    ["ADD-ONS DU BANDEAU", "COUNTER BAR ADD-ONS", "悬浮条组件", "СЧЁТЧИКИ И ДОПОЛНЕНИЯ"],
+        "windows":   ["FENÊTRES", "WINDOWS", "窗口", "ОКНА"],
+        "sharing":   ["PARTAGE DE PARTIES", "GAME SHARING", "对局分享", "ОТПРАВКА ПАРТИЙ"],
         "shareOn":   ["Envoyer mes parties au corpus public",
                       "Send my games to the public corpus",
-                      "把我的对局发送到公开语料库"],
+                      "把我的对局发送到公开语料库", "Отправлять мои партии в общедоступную базу"],
         "shareHint": ["Facultatif. Sert à corriger le lecteur de journaux et à nourrir d'autres projets. Le corpus est ouvert : tout le monde peut le retélécharger, toi compris.",
                       "Optional. Used to fix the log parser and feed other projects. The corpus is open: anyone can download it back, you included.",
-                      "可选。用于修好日志解析器，并供其他项目使用。语料库是公开的：任何人都能重新下载，包括你自己。"],
+                      "可选。用于修好日志解析器，并供其他项目使用。语料库是公开的：任何人都能重新下载，包括你自己。", "Необязательно. Помогает исправлять разбор журналов и развивать другие проекты. База открыта: скачать её может любой, включая вас."],
         "anonymAlways": ["Ton pseudo et celui de l'adversaire sont toujours remplacés par des jetons anonymes avant l'envoi. Ce n'est pas un réglage.",
                       "Your battletag and your opponent's are always replaced by anonymous tokens before sending. This is not a setting.",
-                      "发送之前，你和对手的战网昵称总会被替换成匿名代号。这不是一个开关。"],
-        "rank":      ["Mon rang", "My rank", "我的段位"],
+                      "发送之前，你和对手的战网昵称总会被替换成匿名代号。这不是一个开关。", "Ваш BattleTag и BattleTag соперника всегда заменяются анонимными кодами перед отправкой. Отключить это нельзя."],
+        "rank":      ["Mon rang", "My rank", "我的段位", "Мой ранг"],
         "rankHint":  ["Hearthstone ne l'écrit dans aucun journal : il ne peut être que déclaré. Facultatif.",
                       "Hearthstone writes it in no log file, so it can only be declared. Optional.",
-                      "炉石不会把它写进任何日志，所以只能手动声明。可选。"],
-        "queued":    ["En attente : ", "Queued: ", "排队中："],
-        "installId": ["Mon identifiant :", "My identifier:", "我的标识符："],
+                      "炉石不会把它写进任何日志，所以只能手动声明。可选。", "Hearthstone не записывает ранг в журналы, поэтому его можно указать только вручную. Необязательно."],
+        "queued":    ["En attente : ", "Queued: ", "排队中：", "В очереди: "],
+        "installId": ["Mon identifiant :", "My identifier:", "我的标识符：", "Мой идентификатор:"],
         "installIdHint": ["Il regroupe tes envois. Sert à les retrouver dans le corpus, ou à en demander la suppression. Aucun lien avec ton compte Blizzard.",
                           "It groups your uploads. Use it to find them back in the corpus, or to request their deletion. Unrelated to your Blizzard account.",
-                          "它用于归集你的上传内容，方便在语料库里找回，或申请删除。与你的暴雪账号无关。"],
-        "copied":    ["copié", "copied", "已复制"],
-        "copy":      ["copier", "copy", "复制"],
-        "archives":  ["ARCHIVES DE PARTIES", "GAME ARCHIVES", "对局归档"],
-        "archiveOn": ["Archiver les journaux de session", "Archive session logs", "归档会话日志"],
+                          "它用于归集你的上传内容，方便在语料库里找回，或申请删除。与你的暴雪账号无关。", "Объединяет ваши отправки. По нему можно найти их в базе или запросить удаление. Не связан с учётной записью Blizzard."],
+        "copied":    ["copié", "copied", "已复制", "скопировано"],
+        "copy":      ["copier", "copy", "复制", "копировать"],
+        "archives":  ["ARCHIVES DE PARTIES", "GAME ARCHIVES", "对局归档", "АРХИВЫ ПАРТИЙ"],
+        "archiveOn": ["Archiver les journaux de session", "Archive session logs", "归档会话日志", "Архивировать журналы сеансов"],
         "archiveHint": ["Hearthstone efface ses vieux journaux ; l'historique ne garde qu'un résumé. Compressé ×18 : moins d'1 Mo par session.",
                         "Hearthstone deletes its old logs; history keeps only a summary. Compressed ×18: under 1 MB per session.",
-                        "炉石会删掉旧日志；历史记录只保留摘要。压缩率约 ×18：每场不到 1 MB。"],
-        "archived":  ["Archivé : ", "Archived: ", "已归档："],
-        "seeQueue":  ["voir le dossier", "open folder", "打开文件夹"],
-        "clearQueue":["tout effacer", "clear", "全部清除"],
-        "sendNow":   ["envoyer maintenant", "send now", "立即发送"],
+                        "炉石会删掉旧日志；历史记录只保留摘要。压缩率约 ×18：每场不到 1 MB。", "Hearthstone удаляет старые журналы; история хранит лишь сводку. Сжатие в 18 раз: менее 1 МБ на сеанс."],
+        "archived":  ["Archivé : ", "Archived: ", "已归档：", "В архиве: "],
+        "seeQueue":  ["voir le dossier", "open folder", "打开文件夹", "открыть папку"],
+        "clearQueue":["tout effacer", "clear", "全部清除", "очистить"],
+        "sendNow":   ["envoyer maintenant", "send now", "立即发送", "отправить сейчас"],
         "noEndpoint":["Aucun point de collecte n'est configuré dans cette version : les parties restent ici, sur ta machine.",
                       "No collection endpoint is configured in this build: games stay here, on your machine.",
-                      "这个版本没有配置收集端点：对局只会留在你自己的机器上。"],
-        "oppPanel":  ["Panneau adversaire (à gauche)", "Opponent panel (left)", "对手面板（左侧）"],
-        "handDots":  ["Pastilles sous la main adverse", "Dots under opponent's hand", "对手手牌下方的标记点"],
-        "myHand":    ["Ma main dans le panneau", "My hand in the panel", "面板中显示我的手牌"],
-        "myPlays":   ["Mes cartes jouées dans le panneau", "Cards I played, in the panel", "面板中显示我出过的牌"],
-        "procCheck": ["Vérifier que Hearthstone est lancé", "Check that Hearthstone is running", "检查炉石是否已启动"],
+                      "这个版本没有配置收集端点：对局只会留在你自己的机器上。", "В этой сборке не настроен сервер приёма: партии остаются на вашем компьютере."],
+        "oppPanel":  ["Panneau adversaire (à gauche)", "Opponent panel (left)", "对手面板（左侧）", "Панель соперника (слева)"],
+        "handDots":  ["Pastilles sous la main adverse", "Dots under opponent's hand", "对手手牌下方的标记点", "Метки под рукой соперника"],
+        "myHand":    ["Ma main dans le panneau", "My hand in the panel", "面板中显示我的手牌", "Моя рука на панели"],
+        "myPlays":   ["Mes cartes jouées dans le panneau", "Cards I played, in the panel", "面板中显示我出过的牌", "Мои разыгранные карты на панели"],
+        "procCheck": ["Vérifier que Hearthstone est lancé", "Check that Hearthstone is running", "检查炉石是否已启动", "Проверять, запущен ли Hearthstone"],
         "procCheckHint": ["À couper pour les versions natives (hearthstone-linux-gui) : sans Hearthstone.exe, le jeu n'est jamais détecté.",
                           "Turn off for native ports (hearthstone-linux-gui): without Hearthstone.exe, the game is never detected.",
-                          "原生移植版（hearthstone-linux-gui）请关闭：没有 Hearthstone.exe，游戏永远检测不到。"],
+                          "原生移植版（hearthstone-linux-gui）请关闭：没有 Hearthstone.exe，游戏永远检测不到。", "Отключите для нативных версий (hearthstone-linux-gui): без Hearthstone.exe игра не определяется."],
         "hideDrawn": ["Masquer les cartes piochées (sinon grisées)",
                       "Hide drawn cards (otherwise dimmed)",
-                      "隐藏已抽到的牌（否则显示为灰色）"],
+                      "隐藏已抽到的牌（否则显示为灰色）", "Скрывать взятые карты (иначе затемнять)"],
         "inlinePreview": ["Aperçu des cartes dans le panneau",
                           "Card preview inside the panel",
-                          "在面板内预览卡牌"],
+                          "在面板内预览卡牌", "Предпросмотр карты внутри панели"],
         "inlinePreviewHint": ["Plutôt qu'une fenêtre à côté. À garder pour Niri, Hyprland, Sway : ils donnent le focus à chaque fenêtre et l'aperçu se fermait en boucle.",
                               "Instead of a separate window. Keep it on for Niri, Hyprland, Sway: they focus every new window and the preview kept closing in a loop.",
-                              "不再使用单独的窗口。Niri、Hyprland、Sway 下请保持开启：它们会让每个新窗口获得焦点，导致预览反复关闭。"],
-        "xwayland": ["Passer par XWayland", "Run through XWayland", "通过 XWayland 运行"],
+                              "不再使用单独的窗口。Niri、Hyprland、Sway 下请保持开启：它们会让每个新窗口获得焦点，导致预览反复关闭。", "Вместо отдельного окна. Включайте для Niri, Hyprland и Sway: они передают фокус новым окнам, из-за чего предпросмотр постоянно закрывается."],
+        "xwayland": ["Passer par XWayland", "Run through XWayland", "通过 XWayland 运行", "Запускать через XWayland"],
         "xwaylandHint": ["Pour GNOME : sous Wayland, les fenêtres ne peuvent ni rester au-dessus du jeu ni retenir leur place. Prend effet au prochain lancement de Cairn.",
                          "For GNOME: under Wayland, windows can neither stay above the game nor keep their place. Takes effect next time Cairn starts.",
-                         "适用于 GNOME：在 Wayland 下，窗口既无法保持在游戏上方，也记不住位置。下次启动 Cairn 时生效。"],
+                         "适用于 GNOME：在 Wayland 下，窗口既无法保持在游戏上方，也记不住位置。下次启动 Cairn 时生效。", "Для GNOME: в Wayland окна не могут оставаться поверх игры и сохранять положение. Применяется после перезапуска Cairn."],
         "handDotsHint": ["Tour d'arrivée, cadeau, vignette. À caler une fois sous son éventail : la position est retenue.",
                          "Arrival turn, gift, tile. Drag it once under their hand: the position is remembered.",
-                         "到手回合、赠牌、牌面。在他的手牌下方对齐一次即可，位置会被记住。"],
-        "sizeDeck":  ["Taille — mon deck", "Size — my deck", "尺寸 —— 我的套牌"],
-        "sizeOpp":   ["Taille — adversaire", "Size — opponent", "尺寸 —— 对手"],
-        "sizeBar":   ["Taille — widgets flottants", "Size — floating widgets", "尺寸 —— 悬浮组件"],
-        "resetPos":  ["Replacer les widgets", "Reset widget positions", "重置组件位置"],
+                         "到手回合、赠牌、牌面。在他的手牌下方对齐一次即可，位置会被记住。", "Ход получения, подарок, миниатюра. Перетащите под руку соперника один раз: положение сохранится."],
+        "sizeDeck":  ["Taille — mon deck", "Size — my deck", "尺寸 —— 我的套牌", "Масштаб — моя колода"],
+        "sizeOpp":   ["Taille — adversaire", "Size — opponent", "尺寸 —— 对手", "Масштаб — соперник"],
+        "sizeBar":   ["Taille — widgets flottants", "Size — floating widgets", "尺寸 —— 悬浮组件", "Масштаб — виджеты"],
+        "resetPos":  ["Replacer les widgets", "Reset widget positions", "重置组件位置", "Сбросить положение виджетов"],
         "resetPosHint": ["Compteurs, dégâts et secrets retournent à leur place d'origine",
                          "Counters, damage and secrets return to their default spot",
-                         "计数器、伤害和奥秘都会回到初始位置"],
-        "myDecks":   ["MES DECKS", "MY DECKS", "我的套牌"],
-        "overall":   ["Bilan global : ", "Overall: ", "总战绩："],
+                         "计数器、伤害和奥秘都会回到初始位置", "Счётчики, урон и секреты вернутся на исходные места"],
+        "myDecks":   ["MES DECKS", "MY DECKS", "我的套牌", "МОИ КОЛОДЫ"],
+        "overall":   ["Bilan global : ", "Overall: ", "总战绩：", "Всего: "],
         "noGames":   ["Aucune partie enregistrée — joue avec Cairn ouvert.",
                       "No games recorded yet — play with the tracker open.",
-                      "还没有记录到对局 —— 请开着 Cairn 打一局。"],
+                      "还没有记录到对局 —— 请开着 Cairn 打一局。", "Пока нет записанных партий — сыграйте с включённым трекером."],
         "clickDeck": ["clique un deck pour filtrer les classes et les parties",
                       "click a deck to filter classes and games",
-                      "点击一套牌可筛选职业和对局"],
-        "game1":     [" partie", " game", " 场"],
-        "games":     [" parties", " games", " 场"],
-        "archive":   ["archiver", "archive", "归档"],
-        "addTitle":  ["AJOUTER UNE PARTIE À LA MAIN", "ADD A GAME MANUALLY", "手动添加对局"],
+                      "点击一套牌可筛选职业和对局", "нажмите на колоду для фильтрации классов и партий"],
+        "game1":     [" partie", " game", " 场", " парт."],
+        "games":     [" parties", " games", " 场", " парт."],
+        "archive":   ["archiver", "archive", "归档", "архив"],
+        "addTitle":  ["AJOUTER UNE PARTIE À LA MAIN", "ADD A GAME MANUALLY", "手动添加对局", "ДОБАВИТЬ ПАРТИЮ ВРУЧНУЮ"],
         "addHint":   ["Quand le journal de Hearthstone a lâché en pleine partie.",
                       "For when Hearthstone's log died mid-game.",
-                      "用于炉石日志在对局中途断掉的情况。"],
-        "deck":      ["Deck", "Deck", "套牌"],
-        "opponent":  ["Adversaire", "Opponent", "对手"],
-        "win":       ["✓ Victoire", "✓ Win", "✓ 胜利"],
-        "loss":      ["✗ Défaite", "✗ Loss", "✗ 失败"],
-        "added":     ["Partie ajoutée.", "Game added.", "对局已添加。"],
-        "vsClasses": ["CONTRE LES CLASSES", "AGAINST CLASSES", "对各职业战绩"],
-        "recent":    ["DERNIÈRES PARTIES", "RECENT GAMES", "最近对局"],
-        "vs":        ["vs ", "vs ", "对阵 "],
+                      "用于炉石日志在对局中途断掉的情况。", "Если журнал Hearthstone перестал записываться во время партии."],
+        "deck":      ["Deck", "Deck", "套牌", "Колода"],
+        "opponent":  ["Adversaire", "Opponent", "对手", "Соперник"],
+        "win":       ["✓ Victoire", "✓ Win", "✓ 胜利", "✓ Победа"],
+        "loss":      ["✗ Défaite", "✗ Loss", "✗ 失败", "✗ Поражение"],
+        "added":     ["Partie ajoutée.", "Game added.", "对局已添加。", "Партия добавлена."],
+        "vsClasses": ["CONTRE LES CLASSES", "AGAINST CLASSES", "对各职业战绩", "ПРОТИВ КЛАССОВ"],
+        "recent":    ["DERNIÈRES PARTIES", "RECENT GAMES", "最近对局", "ПОСЛЕДНИЕ ПАРТИИ"],
+        "vs":        ["vs ", "vs ", "对阵 ", "против "],
         "warnTitle": ["Attention — action irréversible", "Warning — this cannot be undone",
-                      "注意 —— 此操作不可撤销"],
-        "no":        ["Non, annuler", "No, cancel", "不，取消"],
-        "yes":       ["Oui, supprimer", "Yes, delete", "是，删除"],
+                      "注意 —— 此操作不可撤销", "Внимание — отменить это действие нельзя"],
+        "no":        ["Non, annuler", "No, cancel", "不，取消", "Нет, отменить"],
+        "yes":       ["Oui, supprimer", "Yes, delete", "是，删除", "Да, удалить"],
         "noPrefix":  ["⚠ Hearthstone est introuvable. Colle ci-dessous le dossier qui contient « drive_c » (le prefix Wine/Proton), ou directement le dossier Logs pour une version native — ou lance « cairn-doctor » pour un diagnostic.",
                       "⚠ Hearthstone not found. Paste below the folder containing “drive_c” (the Wine/Proton prefix), or straight its Logs folder for a native port — or run “cairn-doctor” to diagnose.",
-                      "⚠ 找不到炉石传说。请在下方粘贴包含「drive_c」的文件夹（Wine/Proton 前缀）；若是原生移植版，就直接粘贴它的 Logs 文件夹 —— 或者运行「cairn-doctor」做一次诊断。"],
+                      "⚠ 找不到炉石传说。请在下方粘贴包含「drive_c」的文件夹（Wine/Proton 前缀）；若是原生移植版，就直接粘贴它的 Logs 文件夹 —— 或者运行「cairn-doctor」做一次诊断。", "⚠ Hearthstone не найден. Укажите папку с «drive_c» (префикс Wine/Proton) или папку Logs нативной версии. Для диагностики можно запустить «cairn-doctor»."],
         "gamePathHint":["Dossier du jeu : prefix (avec « drive_c ») ou dossier Logs",
                         "Game folder: prefix (with “drive_c”) or Logs folder",
-                        "游戏文件夹：前缀（含「drive_c」）或 Logs 文件夹"],
+                        "游戏文件夹：前缀（含「drive_c」）或 Logs 文件夹", "Папка игры: префикс (с «drive_c») или Logs"],
         "gamePathBad":["Aucun Hearthstone dans ce dossier : ni « drive_c/Program Files (x86)/Hearthstone », ni dossier Logs.",
                        "No Hearthstone in this folder: neither “drive_c/Program Files (x86)/Hearthstone” nor a Logs folder.",
-                       "这个文件夹里没有炉石传说：既没有「drive_c/Program Files (x86)/Hearthstone」，也没有 Logs 文件夹。"],
+                       "这个文件夹里没有炉石传说：既没有「drive_c/Program Files (x86)/Hearthstone」，也没有 Logs 文件夹。", "Hearthstone в этой папке не найден: нет ни «drive_c/Program Files (x86)/Hearthstone», ни папки Logs."],
         "logsOff":   ["⚠ Hearthstone n'écrit pas ses journaux : Cairn ne peut rien suivre. Un clic active l'enregistrement, puis REDÉMARRE le jeu.",
                       "⚠ Hearthstone isn't writing its logs, so Cairn can't track anything. One click enables them, then RESTART the game.",
-                      "⚠ 炉石没有在写日志：Cairn 什么都追踪不到。点一下即可开启日志记录，然后重启游戏。"],
+                      "⚠ 炉石没有在写日志：Cairn 什么都追踪不到。点一下即可开启日志记录，然后重启游戏。", "⚠ Hearthstone не записывает журналы — Cairn не может отслеживать игру. Включите их кнопкой и ПЕРЕЗАПУСТИТЕ игру."],
         "logCapped": ["⚠ Hearthstone plafonne ses journaux à 10 Mo : il cesse d'écrire en pleine session et Cairn devient aveugle. Un clic lève le plafond, puis REDÉMARRE le jeu.",
                       "⚠ Hearthstone caps its logs at 10 MB: it stops writing mid-session and Cairn goes blind. One click lifts the cap, then RESTART the game.",
-                      "⚠ 炉石把日志上限设在 10 MB：对局进行到一半就会停止写入，Cairn 会变成瞎子。点一下解除上限，然后重启游戏。"],
-        "enableLogs":["Activer les journaux du jeu", "Enable game logs", "开启游戏日志"],
-        "liftCap":   ["Lever le plafond des journaux", "Lift the log size cap", "解除日志大小上限"],
+                      "⚠ 炉石把日志上限设在 10 MB：对局进行到一半就会停止写入，Cairn 会变成瞎子。点一下解除上限，然后重启游戏。", "⚠ Hearthstone ограничивает журналы 10 МБ: запись обрывается во время игры. Снимите ограничение кнопкой и ПЕРЕЗАПУСТИТЕ игру."],
+        "enableLogs":["Activer les journaux du jeu", "Enable game logs", "开启游戏日志", "Включить журналы игры"],
+        "liftCap":   ["Lever le plafond des journaux", "Lift the log size cap", "解除日志大小上限", "Снять ограничение журналов"],
         // historique : partie abandonnée d'emblée, par moi ou par l'adversaire
-        "concededMe": ["concédée", "conceded", "我认输"],
-        "concededOpp":["concédé", "they quit", "对手认输"],
-        "prefixFound":["Jeu détecté : ", "Game found at: ", "已检测到游戏："],
-        "archetypes":["Ses decks", "Their decks", "对手的套牌"],
-        "refDecks":["Listes de référence", "Reference lists", "参考牌表"],
-        "refName":["nom", "name", "名称"],
+        "concededMe": ["concédée", "conceded", "我认输", "вы сдались"],
+        "concededOpp":["concédé", "they quit", "对手认输", "соперник сдался"],
+        "prefixFound":["Jeu détecté : ", "Game found at: ", "已检测到游戏：", "Игра найдена: "],
+        "archetypes":["Ses decks", "Their decks", "对手的套牌", "Колоды соперника"],
+        "refDecks":["Listes de référence", "Reference lists", "参考牌表", "Эталонные колоды"],
+        "refName":["nom", "name", "名称", "название"],
         "refCode":["colle un ou plusieurs decks ici (### Nom + code)",
                    "paste one or more decks here (### Name + code)",
-                   "在这里粘贴一份或多份套牌（### 名称 + 代码）"],
+                   "在这里粘贴一份或多份套牌（### 名称 + 代码）", "вставьте колоды сюда (### Название + код)"],
         "archetypeHint":["Déduit des cartes venues de son deck. « Deck non reconnu » = rien de\nreconnaissable n\u2019a été montré — jamais une supposition.",
                          "Inferred from cards played out of their deck. \u201cUnidentified\u201d\nmeans nothing recognisable was shown \u2014 never a guess.",
-                         "根据从对手牌库打出的牌推断。「未知套牌」表示\n没出现任何可识别的特征 —— 从不猜测。"],
-        "launchHs":["Lancer Hearthstone", "Launch Hearthstone", "启动炉石传说"],
+                         "根据从对手牌库打出的牌推断。「未知套牌」表示\n没出现任何可识别的特征 —— 从不猜测。", "Определяется по картам из колоды соперника. «Неизвестная колода»\nозначает, что характерных карт ещё не было — без догадок."],
+        "launchHs":["Lancer Hearthstone", "Launch Hearthstone", "启动炉石传说", "Запустить Hearthstone"],
         "launchUnknown":["Aucun lanceur détecté. Colle ci-dessous la commande "
                          + "qui lance Hearthstone chez toi.",
                          "No launcher detected. Paste the command that starts "
                          + "Hearthstone on your machine below.",
                          "没有检测到启动器。请在下面粘贴"
-                         + "你机器上启动炉石传说的命令。"],
+                         + "你机器上启动炉石传说的命令。", "Способ запуска не найден. Вставьте ниже команду запуска Hearthstone на вашем компьютере."],
         "launchCmdHint":["Commande de lancement (si la détection échoue)",
                          "Launch command (if detection fails)",
-                         "启动命令（检测失败时使用）"],
+                         "启动命令（检测失败时使用）", "Команда запуска (если не определилась)"],
         "logFull":   ["⚠ Le journal de Hearthstone est plein (limite Blizzard : 10 Mo par session) — le suivi est aveugle. REDÉMARRE HEARTHSTONE pour reprendre le tracking.",
                       "⚠ Hearthstone's log is full (Blizzard limit: 10 MB per session) — tracking is blind. RESTART HEARTHSTONE to resume.",
-                      "⚠ 炉石的日志已满（暴雪限制：每场 10 MB）—— 追踪已失效。重启炉石即可恢复追踪。"]
+                      "⚠ 炉石的日志已满（暴雪限制：每场 10 MB）—— 追踪已失效。重启炉石即可恢复追踪。", "⚠ Журнал Hearthstone заполнен (лимит Blizzard: 10 МБ за сеанс) — отслеживание остановлено. ПЕРЕЗАПУСТИТЕ HEARTHSTONE."]
     })
     function tr(key) {
         var pair = strings[key]
@@ -485,9 +485,9 @@ Window {
                 }
                 Item { Layout.fillWidth: true }
 
-                // bascule de langue : segmenté FR | EN | 中, la case active éclairée
+                // Language switch: one 30px segment per supported locale.
                 Rectangle {
-                    width: 92
+                    width: 122
                     height: 24
                     radius: 12
                     color: home.thm.sunken
@@ -497,7 +497,7 @@ Window {
                         anchors.centerIn: parent
                         spacing: 0
                         Repeater {
-                            model: ["fr", "en", "zh"]
+                            model: ["fr", "en", "zh", "ru"]
                             delegate: Rectangle {
                                 id: langCase
                                 required property int index
@@ -518,7 +518,7 @@ Window {
                                 }
                                 Text {
                                     anchors.centerIn: parent
-                                    text: ["FR", "EN", "中"][langCase.index]
+                                    text: ["FR", "EN", "中", "RU"][langCase.index]
                                     color: langCase.actif ? home.thm.goldHi
                                                           : home.thm.textFaint
                                     font.pixelSize: 10
@@ -1575,12 +1575,12 @@ Window {
                                 ToolTip.delay: 350
                                 ToolTip.text:
                                     (model.shapeWin !== ""
-                                     ? (["Victoires : ", "Wins: ", "胜场："][tracker.langIndex])
+                                     ? (["Victoires : ", "Wins: ", "胜场：", "Побед: "][tracker.langIndex])
                                        + model.shapeWin : "")
                                     + (model.shapeWin !== "" && model.shapeLoss !== ""
                                        ? "\n" : "")
                                     + (model.shapeLoss !== ""
-                                       ? (["Défaites : ", "Losses: ", "负场："][tracker.langIndex])
+                                       ? (["Défaites : ", "Losses: ", "负场：", "Поражений: "][tracker.langIndex])
                                          + model.shapeLoss : "")
                             }
                             RowLayout {
@@ -2302,15 +2302,19 @@ Window {
         function askDeck(name, games) {
             kind = "deck"
             deckName = name
-            message = "Voulez-vous vraiment supprimer « " + name + " » et ses "
-                    + games + (games > 1 ? " parties" : " partie") + " ?"
+            message = ["Supprimer « %1 » et ses parties (%2) ?",
+                       "Delete “%1” and its games (%2)?",
+                       "删除「%1」及其对局（%2 场）？",
+                       "Удалить «%1» и все партии этой колоды (%2)?"][tracker.langIndex]
+                       .arg(name).arg(games)
             visible = true
         }
         function askGame(s, i, label) {
             kind = "game"
             session = s
             gameIndex = i
-            message = "Voulez-vous vraiment supprimer cette partie ?\n" + label
+            message = ["Supprimer cette partie ?\n", "Delete this game?\n",
+                       "删除这场对局？\n", "Удалить эту партию?\n"][tracker.langIndex] + label
             visible = true
         }
         function accept() {

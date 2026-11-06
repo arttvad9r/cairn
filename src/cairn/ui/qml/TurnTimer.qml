@@ -48,7 +48,7 @@ FloatingWindow {
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 5
                     Text {
-                        text: (["Tour ", "Turn ", "回合 "][tracker.langIndex])
+                        text: (["Tour ", "Turn ", "回合 ", "Ход "][tracker.langIndex])
                               + tracker.turnCount
                         color: clock.text
                         font.pixelSize: 11
@@ -90,7 +90,7 @@ FloatingWindow {
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 4
                     Text {
-                        text: ["moi", "me", "我"][tracker.langIndex]
+                        text: ["moi", "me", "我", "я"][tracker.langIndex]
                         color: clock.good
                         font.pixelSize: 10
                     }
@@ -112,7 +112,7 @@ FloatingWindow {
                         font.bold: true
                     }
                     Text {
-                        text: ["lui", "them", "对手"][tracker.langIndex]
+                        text: ["lui", "them", "对手", "соп."][tracker.langIndex]
                         color: clock.bad
                         font.pixelSize: 10
                     }

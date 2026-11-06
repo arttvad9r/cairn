@@ -47,7 +47,7 @@ class Config:
     # overlays passaient sous Hearthstone et revenaient au centre (#11).
     # None = automatique (oui sous GNOME). Pris en compte au lancement.
     xwayland: bool | None = None
-    language: str = "fr"  # "fr" | "en" | "zh"
+    language: str = "fr"  # "fr" | "en" | "zh" | "ru"
     hs_prefix: str = ""  # force le prefix Wine/Proton si la détection se trompe
     # Vise directement un dossier Logs/, sans prefix : installations natives
     # (hearthstone-linux-gui et consorts), où « drive_c » n'existe pas.
@@ -156,7 +156,7 @@ class Config:
         xw = data.get("xwayland")
         cfg.xwayland = None if xw is None else bool(xw)
         langue = data.get("language")
-        cfg.language = langue if langue in ("fr", "en", "zh") else "fr"
+        cfg.language = langue if langue in ("fr", "en", "zh", "ru") else "fr"
         cfg.hs_prefix = str(data.get("hs_prefix") or "")
         cfg.hs_logs = str(data.get("hs_logs") or "")
         # Manquait ici : la commande de lancement était bien écrite par save()

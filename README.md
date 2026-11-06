@@ -80,6 +80,10 @@ window-rule {
 }
 ```
 
+## Russian localization (local build)
+
+This build adds Russian (`RU`) to the language selector, including overlay labels, settings, history, card names, card text, previews and creator labels. Card data uses HearthstoneJSON `ruRU` and is refreshed by `cairn-cards all`. Other languages remain available. The local version is `1.0.4+ru.1`.
+
 ## Installation
 
 ```bash

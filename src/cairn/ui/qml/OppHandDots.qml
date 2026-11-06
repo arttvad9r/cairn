@@ -110,12 +110,12 @@ FloatingWindow {
                         : (model.creatorId !== undefined ? model.creatorId : "")
                     readonly property string note: {
                         var quand = model.badge === "M"
-                            ? (["gardée au mulligan", "kept at mulligan", "起手保留"][tracker.langIndex])
+                            ? (["gardée au mulligan", "kept at mulligan", "起手保留", "оставлена при замене карт"][tracker.langIndex])
                             : (model.badge === "" ? ""
-                               : (["arrivée au tour ", "arrived turn ", "到达回合 "][tracker.langIndex])
+                               : (["arrivée au tour ", "arrived turn ", "到达回合 ", "получена на ходу "][tracker.langIndex])
                                  + model.badge)
                         var qui = model.origin !== ""
-                            ? (["créée par ", "created by ", "衍生自 "][tracker.langIndex])
+                            ? (["créée par ", "created by ", "衍生自 ", "создана картой "][tracker.langIndex])
                               + model.origin
                             : ""
                         return [quand, qui].filter(function (s) { return s !== "" })

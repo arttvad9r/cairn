@@ -50,7 +50,7 @@ Window {
 
     // Traduction : l'index vient de tracker.langIndex, donc le texte se
     // retraduit tout seul au changement de langue (binding, pas d'appel).
-    function t(fr, enTxt, zh) { return [fr, enTxt, zh][tracker.langIndex] }
+    function t(fr, enTxt, zh, ru) { return [fr, enTxt, zh, ru][tracker.langIndex] }
 
     Rectangle {
         anchors.fill: parent
@@ -78,7 +78,7 @@ Window {
                     Text {
                         text: consent.t("Aider à améliorer Cairn ?",
                                         "Help improve Cairn?",
-                    "要帮助改进 Cairn 吗？")
+                    "要帮助改进 Cairn 吗？", "Помочь улучшить Cairn?")
                         color: consent.text
                         font.pixelSize: 19
                         font.bold: true
@@ -86,7 +86,7 @@ Window {
                     Text {
                         text: consent.t("Une seule question, posée une seule fois.",
                                         "One question, asked once.",
-                    "只有一个问题，只问一次。")
+                    "只有一个问题，只问一次。", "Этот вопрос задаётся один раз.")
                         color: consent.muted
                         font.pixelSize: 12
                     }
@@ -109,7 +109,7 @@ Window {
                     "Cairn can send your game logs to a public corpus, to fix the log " +
                     "parser and feed other Hearthstone projects. This is optional: " +
                     "Cairn works exactly the same if you decline.",
-                    "Cairn 可以把你的对局日志发送到一个公开语料库，用来修好日志解析器，并供其他炉石相关项目使用。这是可选的：拒绝之后 Cairn 的运行方式完全相同。")
+                    "Cairn 可以把你的对局日志发送到一个公开语料库，用来修好日志解析器，并供其他炉石相关项目使用。这是可选的：拒绝之后 Cairn 的运行方式完全相同。", "Cairn может отправлять журналы ваших партий в общедоступную базу для исправления разбора журналов и развития других проектов Hearthstone. Это необязательно: при отказе Cairn работает точно так же.")
             }
 
             // ---- ce qui part, ce qui ne part pas ------------------------
@@ -155,7 +155,7 @@ Window {
                             "et le nom de tes decks.",
                             "The course of your games: cards played, turns, result, " +
                             "and your deck names.",
-                    "对局过程：出过的牌、回合数、胜负结果，以及你的套牌名称。")
+                    "对局过程：出过的牌、回合数、胜负结果，以及你的套牌名称。", "Ход ваших партий: разыгранные карты, ходы, результат и названия ваших колод.")
                     }
                     Ligne {
                         glyphe: "✓"; teinte: consent.good
@@ -166,7 +166,7 @@ Window {
                             "Player identifiers — yours and your opponent's — are " +
                             "replaced by anonymous tokens BEFORE anything leaves " +
                             "your machine.",
-                    "玩家标识 —— 你和对手的 —— 会在任何数据离开你的机器之前替换成匿名代号。")
+                    "玩家标识 —— 你和对手的 —— 会在任何数据离开你的机器之前替换成匿名代号。", "Идентификаторы игроков — ваш и соперника — заменяются анонимными кодами ДО отправки данных с вашего компьютера.")
                     }
                     Ligne {
                         // le dire ICI et pas dans une politique de
@@ -179,7 +179,7 @@ Window {
                             "base privée.",
                             "The corpus is PUBLIC: whatever you share, anyone can " +
                             "download back — you first. It is not a private database.",
-                    "语料库是公开的：你分享的内容，任何人都能重新下载 —— 包括你自己。它不是私有数据库。")
+                    "语料库是公开的：你分享的内容，任何人都能重新下载 —— 包括你自己。它不是私有数据库。", "База ОБЩЕДОСТУПНА: любой человек, включая вас, может скачать отправленные данные. Это не закрытая база.")
                     }
                     Ligne {
                         glyphe: "✕"; teinte: consent.muted
@@ -188,7 +188,7 @@ Window {
                             "ton adresse e-mail, ni quoi que ce soit hors de Hearthstone.",
                             "Never: your Blizzard account, collection, gold, email, " +
                             "or anything outside Hearthstone.",
-                    "绝不包含：你的暴雪账号、卡牌收藏、金币、邮箱，以及任何炉石之外的内容。")
+                    "绝不包含：你的暴雪账号、卡牌收藏、金币、邮箱，以及任何炉石之外的内容。", "Никогда не отправляются: учётная запись Blizzard, коллекция, золото, электронная почта или данные вне Hearthstone.")
                     }
                     Ligne {
                         // ↺ et non ⟲ : le second est si fin qu'à 12 px il se
@@ -199,7 +199,7 @@ Window {
                             "attendait d'être envoyé est alors effacé.",
                             "Reversible at any time from the launcher; anything still " +
                             "queued is deleted.",
-                    "随时可以在启动器里撤销；届时仍在排队等待发送的内容会被删除。")
+                    "随时可以在启动器里撤销；届时仍在排队等待发送的内容会被删除。", "Можно отключить в любой момент в настройках; ожидающие отправки данные будут удалены.")
                     }
                 }
             }
@@ -214,7 +214,7 @@ Window {
                     "launcher, avant tout envoi.",
                     "You can inspect exactly what is queued from the launcher, " +
                     "before anything is sent.",
-                    "在发送任何内容之前，你可以在启动器中查看具体有哪些排队待发。")
+                    "在发送任何内容之前，你可以在启动器中查看具体有哪些排队待发。", "Перед отправкой вы можете посмотреть в настройках, какие именно данные стоят в очереди.")
             }
 
             // ---- les deux boutons, de poids égal ------------------------
@@ -252,12 +252,12 @@ Window {
 
                 Bouton {
                     libelle: consent.t("Non merci", "No thanks",
-                    "不用了")
+                    "不用了", "Нет, спасибо")
                     onActive: tracker.answerConsent(false)
                 }
                 Bouton {
                     libelle: consent.t("Oui, j'envoie mes parties", "Yes, share my games",
-                    "好的，分享我的对局")
+                    "好的，分享我的对局", "Да, отправлять мои партии")
                     primaire: true
                     onActive: tracker.answerConsent(true)
                 }

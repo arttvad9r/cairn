@@ -20,10 +20,12 @@ from .paths import (
     CARDS_JSON,
     CARDS_JSON_EN,
     CARDS_JSON_ZH,
+    CARDS_JSON_RU,
     CARDS_META,
     CARDS_TEXT,
     CARDS_TEXT_EN,
     CARDS_TEXT_ZH,
+    CARDS_TEXT_RU,
 )
 
 URL = "https://api.hearthstonejson.com/v1/latest/{locale}/cards.json"
@@ -33,6 +35,7 @@ TARGETS = {
     "frFR": CARDS_JSON,
     "enUS": CARDS_JSON_EN,
     "zhCN": CARDS_JSON_ZH,
+    "ruRU": CARDS_JSON_RU,
 }
 # Textes de règles, écrits à part : ils pèsent autant que toute la base élaguée
 # et ne servent qu'à l'infobulle de survol, donc on ne les charge qu'à la
@@ -41,6 +44,7 @@ TEXT_TARGETS = {
     "frFR": CARDS_TEXT,
     "enUS": CARDS_TEXT_EN,
     "zhCN": CARDS_TEXT_ZH,
+    "ruRU": CARDS_TEXT_RU,
 }
 
 # ---- cartes dont le CODE connaît l'effet -------------------------------------
@@ -279,7 +283,7 @@ def slim(cards: list[dict], locale: str, with_bg: bool = False) -> list[dict]:
     """Réduit le JSON AVANT écriture : le fichier complet coûte ~58 Mo à parser
     au démarrage (35 000 dicts d'une trentaine de clés) pour une dizaine de
     champs réellement utilisés — cf. budget RAM du cahier des charges."""
-    if locale in ("enUS", "zhCN"):
+    if locale in ("enUS", "zhCN", "ruRU"):
         return [{"id": c["id"], "name": c["name"]} for c in cards if "id" in c]
     if not with_bg:
         cards = [c for c in cards if c.get("set") not in SKIPPED_SETS]

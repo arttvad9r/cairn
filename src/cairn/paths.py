@@ -49,12 +49,14 @@ CARDS_JSON = CARDS_DIR / "cards.frFR.json"
 CARDS_JSON_EN = CARDS_DIR / "cards.enUS.json"
 # Noms chinois : même schéma que l'anglais, pour la locale zhCN.
 CARDS_JSON_ZH = CARDS_DIR / "cards.zhCN.json"
+CARDS_JSON_RU = CARDS_DIR / "cards.ruRU.json"
 # Textes des cartes (id → texte de règles), un fichier par locale. À PART de la
 # base principale, et chargé seulement au premier survol : les textes pèsent
 # autant que tout le reste réuni, alors qu'ils ne servent qu'à l'infobulle.
 CARDS_TEXT = CARDS_DIR / "cards.text.frFR.json"
 CARDS_TEXT_EN = CARDS_DIR / "cards.text.enUS.json"
 CARDS_TEXT_ZH = CARDS_DIR / "cards.text.zhCN.json"
+CARDS_TEXT_RU = CARDS_DIR / "cards.text.ruRU.json"
 # Version de la base téléchargée (empreintes HTTP, date du dernier contrôle,
 # alertes de reformulation) — cf. ``cards_fetch``. Fichier de quelques
 # centaines d'octets, jamais chargé par le tracker en cours de partie.

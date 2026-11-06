@@ -103,7 +103,7 @@ def _fmt_forme(manches: int, secondes: int, lang: str) -> str:
     """
     if not manches and not secondes:
         return ""
-    mot = {"fr": "manches", "en": "turns", "zh": "回合"}.get(lang, "manches")
+    mot = {"fr": "manches", "en": "turns", "zh": "回合", "ru": "ходов"}.get(lang, "manches")
     bouts = []
     if manches:
         bouts.append(f"{manches} {mot}")
@@ -447,6 +447,8 @@ class TrackerBridge(QObject):
     @Property(str, notify=changed)
     def hsLaunchLabel(self):
         m = self._launch_method()
+        if m and self._config.language == "ru":
+            return {"config": "заданная команда", "lutris": "Lutris", "desktop": "ярлык приложения"}.get(m.source, m.label)
         return m.label if m else ""
 
     @Property(bool, notify=changed)
@@ -481,12 +483,14 @@ class TrackerBridge(QObject):
         """Lance le jeu. Rend "" si tout va bien, sinon le message d'erreur."""
         m = self._launch_method()
         if m is None:
-            return "aucune commande de lancement connue"
+            return "Команда запуска не найдена" if self._config.language == "ru" else "aucune commande de lancement connue"
         ok, message = hs_launch.launch(m)
         # HS met plusieurs secondes à ouvrir sa fenêtre : on force un contrôle
         # rapproché plutôt que d'attendre le prochain cycle paresseux.
         self._hs_check_countdown = 0
         self.changed.emit()
+        if not ok and self._config.language == "ru" and message.startswith("introuvable : "):
+            message = "Не найдено: " + message[len("introuvable : "):]
         return "" if ok else message
 
     @Property(str, notify=changed)
@@ -680,7 +684,7 @@ class TrackerBridge(QObject):
             return [
                 {
                     "label": self._db.localized_name(e.card_id, lang) if (e.known and e.card_id) else e.label,
-                    "origin": e.origin,
+                    "origin": self._db.localized_source_name(e.origin, lang),
                     "known": e.known,
                     "count": e.count,
                     "cardId": e.card_id,
@@ -706,13 +710,13 @@ class TrackerBridge(QObject):
 
         def _with_origin(rows):
             return [
-                dict(d, origin=r.origin, struck=getattr(r, "struck", False))
+                dict(d, origin=self._db.localized_source_name(r.origin, lang), struck=getattr(r, "struck", False))
                 for d, r in zip(_cards(rows), rows)
             ]
 
         self._opp_hand_model.replace(_with_origin(view.opponent_hand))
         hidden = {"fr": "? carte cachée", "en": "? hidden card",
-                  "zh": "? 未知牌"}.get(lang, "? carte cachée")
+                  "zh": "? 未知牌", "ru": "? скрытая карта"}.get(lang, "? carte cachée")
         self._opp_hand_slots_model.replace(
             [
                 {
@@ -720,7 +724,7 @@ class TrackerBridge(QObject):
                         self._db.localized_name(s.card_id, lang) if s.known else hidden
                     ),
                     "known": s.known,
-                    "origin": s.origin,
+                    "origin": self._db.localized_source_name(s.origin, lang),
                     # coût inconnu = pas de gemme de mana (CardRow : cost < 0)
                     "cost": s.cost,
                     "cardId": s.card_id,
@@ -743,7 +747,7 @@ class TrackerBridge(QObject):
                     "cost": p.cost,
                     "cardId": p.card_id,
                     "rarity": p.rarity,
-                    "origin": p.origin,
+                    "origin": self._db.localized_source_name(p.origin, lang),
                     "gift": p.created,
                 }
                 for p in view.my_plays
@@ -787,7 +791,7 @@ class TrackerBridge(QObject):
 
         def _atlas(cards):
             hidden = {"fr": "? carte cachée", "en": "? hidden card",
-                      "zh": "? 未知牌"}.get(lang, "? carte cachée")
+                      "zh": "? 未知牌", "ru": "? скрытая карта"}.get(lang, "? carte cachée")
             return [
                 {
                     "label": self._db.localized_name(c.card_id, lang) if c.known else hidden,
@@ -836,7 +840,7 @@ class TrackerBridge(QObject):
                     "cardId": p.card_id,
                     "rarity": p.rarity,
                     # d'où elle vient : nom de la carte qui la lui a donnée
-                    "origin": p.origin,
+                    "origin": self._db.localized_source_name(p.origin, lang),
                     "gift": p.created,
                 }
                 for p in view.opponent_plays
@@ -1253,11 +1257,20 @@ class TrackerBridge(QObject):
         Rend "" si tout va bien, sinon un message à afficher.
         """
         ajoutees, err = self._refs.add_paste(texte, self._db, defaut=name)
+        if self._config.language == "ru":
+            for original, translated in {
+                "donne un nom à cet archétype": "Укажите название колоды",
+                "code de deck illisible": "Не удалось прочитать код колоды",
+                "aucune carte reconnue dans ce code": "В этом коде нет распознанных карт",
+                "cette liste est déjà enregistrée": "Эта колода уже сохранена",
+                "aucun code de deck trouvé dans ce collage": "Во вставленном тексте нет кода колоды",
+            }.items():
+                err = err.replace(original, translated)
         if ajoutees:
             self._refresh_deck_refs()
             self.changed.emit()
             return "" if not err else err
-        return err or "aucune nouvelle liste dans ce collage"
+        return err or ("Во вставленном тексте нет новых колод" if self._config.language == "ru" else "aucune nouvelle liste dans ce collage")
 
     @Slot(str)
     def removeDeckRef(self, name: str) -> None:
@@ -1393,6 +1406,8 @@ class TrackerBridge(QObject):
             return ""
         lang = self._config.language
         mo = octets / 1048576
+        if lang == "ru":
+            return f"Сеансов к отправке: {n} · {mo:.1f} МБ"
         if lang == "zh":
             return f"{n} 场对局待上传 · {mo:.1f} MB"
         if lang == "en":
@@ -1403,7 +1418,7 @@ class TrackerBridge(QObject):
     def rankLeagues(self):
         """Paliers traduits, précédés d'un « — » qui vaut « non renseigné »."""
         vide = {"fr": "— non renseigné —", "en": "— not set —",
-                "zh": "— 未设置 —"}.get(self._config.language, "— non renseigné —")
+                "zh": "— 未设置 —", "ru": "— не указан —"}.get(self._config.language, "— non renseigné —")
         return [vide] + [league_name(k, self._config.language) for k in LEAGUES]
 
     @Property(int, notify=changed)
@@ -1542,6 +1557,8 @@ class TrackerBridge(QObject):
         if not sessions:
             return ""
         mo = sum(s.size for s in sessions) / 1048576
+        if self._config.language == "ru":
+            return f"Сеансов: {len(sessions)} · {mo:.1f} МБ"
         if self._config.language == "zh":
             return f"{len(sessions)} 场对局 · {mo:.1f} MB"
         if self._config.language == "en":
@@ -1708,7 +1725,7 @@ class TrackerBridge(QObject):
                     "cardId": r.card_id,
                     "rarity": r.rarity,
                     "gift": r.gift,
-                    "origin": r.origin,
+                    "origin": self._db.localized_source_name(r.origin, lang),
                 }
                 for r in self._view.rows
                 if not (hide and r.remaining == 0)
@@ -1989,9 +2006,9 @@ class TrackerBridge(QObject):
             # Partie en cours dont le deck est indéterminable (partie amicale) :
             # le dire, plutôt que laisser croire à une attente de partie.
             return {"fr": "Deck inconnu", "en": "Unknown deck",
-                    "zh": "未知套牌"}.get(lang, "Deck inconnu")
+                    "zh": "未知套牌", "ru": "Неизвестная колода"}.get(lang, "Deck inconnu")
         return {"fr": "En attente de partie…", "en": "Waiting for a game…",
-                "zh": "等待对局开始…"}.get(lang, "En attente de partie…")
+                "zh": "等待对局开始…", "ru": "Ожидание партии…"}.get(lang, "En attente de partie…")
 
     @Property(str, notify=changed)
     def opponentName(self):
@@ -2127,18 +2144,19 @@ class TrackerBridge(QObject):
                 mo = active.stat().st_size / 1048576
             except OSError:
                 pass
-        txt = f"journal HS {mo:.1f} Mo"
+        ru = self._config.language == "ru"
+        txt = f"журнал HS: {mo:.1f} МБ" if ru else f"journal HS {mo:.1f} Mo"
         if self._tracker.renames:
-            txt += f" · nom libéré ×{self._tracker.renames}"
+            txt += (f" · переименований: {self._tracker.renames}" if ru else f" · nom libéré ×{self._tracker.renames}")
         else:
             txt += " / 10"
         if not self._config.log_rotation:
             return txt
         if self._tracker.rotation_broken:
-            return txt + " · rotation inopérante (Wine)"
+            return txt + (" · ротация недоступна (Wine)" if ru else " · rotation inopérante (Wine)")
         if self._tracker.rotations:
-            txt += f" · {self._tracker.rotations} rotation"
-            if self._tracker.rotations > 1:
+            txt += (f" · ротаций: {self._tracker.rotations}" if ru else f" · {self._tracker.rotations} rotation")
+            if self._tracker.rotations > 1 and not ru:
                 txt += "s"
         return txt
 
@@ -2152,6 +2170,8 @@ class TrackerBridge(QObject):
         if games == 0:
             return ""
         pct = round(100 * wins / games)
+        if self._config.language == "ru":
+            return f"Партий: {games} · {wins} побед / {games - wins} поражений · {pct} %"
         if self._config.language == "zh":
             return f"{games} 场 · {wins} 胜 – {games - wins} 负 · {pct} %"
         if self._config.language == "en":
@@ -2210,6 +2230,6 @@ class TrackerBridge(QObject):
         if wins == losses == 0:
             return ""
         klass = class_name(self._opp_class, self._config.language)
-        joiner = {"fr": "contre", "en": "vs", "zh": "对阵"}.get(
+        joiner = {"fr": "contre", "en": "vs", "zh": "对阵", "ru": "против"}.get(
             self._config.language, "contre")
         return f"{wins}-{losses} {joiner} {klass}"

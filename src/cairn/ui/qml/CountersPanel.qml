@@ -53,7 +53,7 @@ FloatingWindow {
             Text {
                 anchors.left: parent.left
                 y: 0
-                text: ["COMPTEURS", "COUNTERS", "计数器"][tracker.langIndex]
+                text: ["COMPTEURS", "COUNTERS", "计数器", "СЧЁТЧИКИ"][tracker.langIndex]
                 color: panel.muted
                 font.pixelSize: 11
                 font.bold: true
@@ -74,7 +74,7 @@ FloatingWindow {
                 y: 17
                 width: panel.colW
                 horizontalAlignment: Text.AlignHCenter
-                text: ["moi", "me", "我"][tracker.langIndex]
+                text: ["moi", "me", "我", "я"][tracker.langIndex]
                 color: panel.good
                 font.pixelSize: 9
                 font.bold: true
@@ -85,7 +85,7 @@ FloatingWindow {
                 y: 17
                 width: panel.colW
                 horizontalAlignment: Text.AlignHCenter
-                text: ["adv", "opp", "对手"][tracker.langIndex]
+                text: ["adv", "opp", "对手", "соп."][tracker.langIndex]
                 color: panel.bad
                 font.pixelSize: 9
                 font.bold: true

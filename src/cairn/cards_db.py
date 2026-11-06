@@ -18,9 +18,11 @@ from .paths import (
     CARDS_JSON,
     CARDS_JSON_EN,
     CARDS_JSON_ZH,
+    CARDS_JSON_RU,
     CARDS_TEXT,
     CARDS_TEXT_EN,
     CARDS_TEXT_ZH,
+    CARDS_TEXT_RU,
 )
 
 # Locales secondaires : une simple table id → nom, chargée à la première
@@ -32,12 +34,12 @@ from .paths import (
 # vérifie le repli du texte anglais sur le français.
 def _names_path(lang: str):
     """Fichier id → nom d'une langue secondaire, ou None si la base frFR suffit."""
-    return {"en": CARDS_JSON_EN, "zh": CARDS_JSON_ZH}.get(lang)
+    return {"en": CARDS_JSON_EN, "zh": CARDS_JSON_ZH, "ru": CARDS_JSON_RU}.get(lang)
 
 
 def _text_path(lang: str):
     """Fichier des textes de règles d'une langue."""
-    return {"fr": CARDS_TEXT, "en": CARDS_TEXT_EN, "zh": CARDS_TEXT_ZH}.get(lang)
+    return {"fr": CARDS_TEXT, "en": CARDS_TEXT_EN, "zh": CARDS_TEXT_ZH, "ru": CARDS_TEXT_RU}.get(lang)
 
 
 # Seuls champs utilisés par le tracker — le JSON complet en contient des
@@ -85,6 +87,7 @@ class CardsDb:
 
         # noms des locales secondaires (en, zh), par langue — à la demande
         self._names: dict[str, dict[str, str]] = {}
+        self._source_ids: dict[str, str] | None = None
         # textes de règles, par langue — chargés au premier survol seulement
         self._texts: dict[str, dict[str, str]] = {}
 
@@ -110,6 +113,16 @@ class CardsDb:
                 table = {}
             self._names[lang] = table
         return table.get(card_id or "", fr)
+
+    def localized_source_name(self, name: str, lang: str = "fr") -> str:
+        """Localize creator labels supplied by the game view in the base locale."""
+        if not name or lang == "fr":
+            return name
+        if self._source_ids is None:
+            self._source_ids = {c["name"]: card_id for card_id, c in self.by_card_id.items()
+                                if c.get("name")}
+        card_id = self._source_ids.get(name)
+        return self.localized_name(card_id, lang) if card_id else name
 
     def text(self, card_id: str | None, lang: str = "fr") -> str:
         """Texte de règles d'une carte — vide si la base n'en a pas.
