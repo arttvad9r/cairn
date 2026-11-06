@@ -1,3 +1,5 @@
+> **Личный форк для будущей переработки интерфейса.** Начните с [START_HERE.md](START_HERE.md). Русский язык уже добавлен; сам редизайн ещё не реализован.
+
 # Cairn
 
 **The Hearthstone tracker that runs *natively* on Linux.** No Electron, no Overwolf, no

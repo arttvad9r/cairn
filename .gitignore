@@ -29,3 +29,6 @@ docs/captures/qa-obsolete/
 # Notes de travail personnelles, hors dépôt public (financement, admin).
 docs/PATREON.md
 graphify-out/
+
+# Local development settings, test reports and machine-specific context.
+.dev/
